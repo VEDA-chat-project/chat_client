@@ -7,6 +7,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 set(SOURCES
     ${CMAKE_SOURCE_DIR}/src/login.c
     ${CMAKE_SOURCE_DIR}/src/signup.c
+    ${CMAKE_SOURCE_DIR}/src/messagebuilder.c
     ${CMAKE_SOURCE_DIR}/main.c
 )
 
