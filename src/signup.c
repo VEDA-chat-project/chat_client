@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../include/signup.h"
+#include "signup.h"
 
 void signUp(int ssock) {
     char id[BUFSIZ], password[BUFSIZ];

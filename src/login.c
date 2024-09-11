@@ -3,7 +3,7 @@
 #include <string.h>
 #include <sys/socket.h>
 
-#include "../include/login.h"
+#include "login.h"
 
 void logIn(int ssock) {
     char id[BUFSIZ], password[BUFSIZ];
