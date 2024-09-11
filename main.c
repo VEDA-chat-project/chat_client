@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
@@ -32,12 +33,26 @@ int main(int argc, char **argv) {
         exit(1);
     }
 
-
-
-
-
-
-
+    char cmd;
+    do {
+        printf("1. Log in\n");
+        printf("2. Sign up\n");
+        printf("3. exit\n");
+        printf("select > ");
+        scanf("%c", &cmd);
+        getchar();
+        switch (cmd) {
+            case '1': // Log in
+                break;
+            case '2': // Sign up
+                break;
+            case '3': // exit
+                exit(0);
+            default:
+                printf("You have selected wrong command.\n");
+                break;
+        }
+    } while (cmd != '3');
 
     return 0;
 }
