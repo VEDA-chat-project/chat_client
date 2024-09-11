@@ -6,6 +6,7 @@
 #include <arpa/inet.h>
 
 #include "login.h"
+#include "signup.h"
 
 #define TCP_PORT 5100
 
@@ -48,6 +49,7 @@ int main(int argc, char **argv) {
                 logIn(ssock);
                 break;
             case '2': // Sign up
+                signUp(ssock);
                 break;
             case '3': // exit
                 exit(0);
