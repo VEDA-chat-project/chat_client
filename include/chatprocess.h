@@ -1,0 +1,1 @@
+void chatStart(int, char*);

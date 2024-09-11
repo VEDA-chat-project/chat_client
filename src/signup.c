@@ -7,17 +7,17 @@
 #include "messagebuilder.h"
 
 void signUp(int ssock) {
-    char id[BUFSIZ / 2], password[BUFSIZ / 2], 
+    char id[50], password[50], 
          buffer[BUFSIZ], response[BUFSIZ];
 
     printf("start sign up process\n");
 
     while (1) {
         printf("ID : ");
-        fgets(id, BUFSIZ, stdin);
+        fgets(id, 50, stdin);
         removeNewline(id);
         printf("PW : ");
-        fgets(password, BUFSIZ, stdin);
+        fgets(password, 50, stdin);
         removeNewline(password);
 
         if (send(ssock, createSignupMessage(id, password), BUFSIZ, MSG_DONTWAIT) <= 0) {
@@ -30,7 +30,7 @@ void signUp(int ssock) {
             exit(1);
         }
 
-        printf("Received data : %s\n", response);
+        printf("%s\n", response);
 
         break;
     }

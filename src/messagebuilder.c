@@ -23,12 +23,8 @@ char* createMessage(const char* prefix, const char* part1, const char* part2) {
         return NULL;
     }
 
-    if (part2 != NULL) {
-        snprintf(message, message_length, "%s%s %s", prefix, part1, part2);
-    } else {
-        snprintf(message, message_length, "%s%s", prefix, part1);
-    }
-
+    snprintf(message, message_length, "%s%s %s", prefix, part1, part2);
+    
     return message;
 }
 
@@ -40,6 +36,6 @@ char* createSignupMessage(const char* id, const char* password) {
     return createMessage("SIGNUP:", id, password);
 }
 
-char* createChatMessage(const char* chat) {
-    return createMessage("MESSAGE:", chat, NULL);
+char* createChatMessage(const char* id, const char* chat) {
+    return createMessage("MESSAGE:", id, chat);
 }
