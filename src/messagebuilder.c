@@ -11,47 +11,35 @@ void removeNewline(char* str) {
     }
 }
 
-char* createLoginMessage(const char* id, const char* password) {
-    const char* prefix = "LOGIN:";
-    size_t message_length = strlen(prefix) + strlen(id) + 1 + strlen(password) + 1;
-    
+char* createMessage(const char* prefix, const char* part1, const char* part2) {
+    size_t message_length = strlen(prefix) + strlen(part1) + 1;  // 프리픽스 + part1 + 스페이스 또는 NULL
+    if (part2 != NULL) {
+        message_length += strlen(part2) + 1;  // part2가 있으면 스페이스 포함
+    }
+
     char* message = (char*)malloc(message_length);
     if (message == NULL) {
         perror("Unable to allocate memory");
         return NULL;
     }
 
-    snprintf(message, message_length, "%s%s %s", prefix, id, password);
+    if (part2 != NULL) {
+        snprintf(message, message_length, "%s%s %s", prefix, part1, part2);
+    } else {
+        snprintf(message, message_length, "%s%s", prefix, part1);
+    }
 
     return message;
+}
+
+char* createLoginMessage(const char* id, const char* password) {
+    return createMessage("LOGIN:", id, password);
 }
 
 char* createSignupMessage(const char* id, const char* password) {
-    const char* prefix = "SIGNUP:";
-    size_t message_length = strlen(prefix) + strlen(id) + 1 + strlen(password) + 1;
-    
-    char* message = (char*)malloc(message_length);
-    if (message == NULL) {
-        perror("Unable to allocate memory");
-        return NULL;
-    }
-
-    snprintf(message, message_length, "%s%s %s", prefix, id, password);
-
-    return message;
+    return createMessage("SIGNUP:", id, password);
 }
 
 char* createChatMessage(const char* chat) {
-    const char* prefix = "MESSAGE:";
-    size_t message_length = strlen(prefix) + strlen(chat) + 1;
-    
-    char* message = (char*)malloc(message_length);
-    if (message == NULL) {
-        perror("Unable to allocate memory");
-        return NULL;
-    }
-
-    snprintf(message, message_length, "%s%s", prefix, message);
-
-    return message;
+    return createMessage("MESSAGE:", chat, NULL);
 }
