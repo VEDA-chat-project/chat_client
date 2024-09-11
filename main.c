@@ -5,8 +5,7 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
-#include "login.h"
-#include "signup.h"
+#include "authheader.h"
 
 #define TCP_PORT 5100
 

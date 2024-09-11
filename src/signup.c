@@ -3,7 +3,7 @@
 #include <string.h>
 #include <sys/socket.h>
 
-#include "signup.h"
+#include "authheader.h"
 #include "messagebuilder.h"
 
 void signUp(int ssock) {
