@@ -13,7 +13,7 @@ void removeNewline(char* str) {
 
 char* createLoginMessage(const char* id, const char* password) {
     const char* prefix = "LOGIN:";
-    size_t message_length = strlen(prefix) + strlen(id) + 1 + strlen(password) + 1; // 1 for space, 1 for '\0'
+    size_t message_length = strlen(prefix) + strlen(id) + 1 + strlen(password) + 1;
     
     char* message = (char*)malloc(message_length);
     if (message == NULL) {
@@ -22,6 +22,36 @@ char* createLoginMessage(const char* id, const char* password) {
     }
 
     snprintf(message, message_length, "%s%s %s", prefix, id, password);
+
+    return message;
+}
+
+char* createSignupMessage(const char* id, const char* password) {
+    const char* prefix = "SIGNUP:";
+    size_t message_length = strlen(prefix) + strlen(id) + 1 + strlen(password) + 1;
+    
+    char* message = (char*)malloc(message_length);
+    if (message == NULL) {
+        perror("Unable to allocate memory");
+        return NULL;
+    }
+
+    snprintf(message, message_length, "%s%s %s", prefix, id, password);
+
+    return message;
+}
+
+char* createChatMessage(const char* chat) {
+    const char* prefix = "MESSAGE:";
+    size_t message_length = strlen(prefix) + strlen(chat) + 1;
+    
+    char* message = (char*)malloc(message_length);
+    if (message == NULL) {
+        perror("Unable to allocate memory");
+        return NULL;
+    }
+
+    snprintf(message, message_length, "%s%s", prefix, message);
 
     return message;
 }
