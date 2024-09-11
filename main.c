@@ -5,6 +5,8 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
+#include "login.h"
+
 #define TCP_PORT 5100
 
 int main(int argc, char **argv) {
@@ -43,6 +45,7 @@ int main(int argc, char **argv) {
         getchar();
         switch (cmd) {
             case '1': // Log in
+                logIn(ssock);
                 break;
             case '2': // Sign up
                 break;
