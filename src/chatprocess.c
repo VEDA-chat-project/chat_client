@@ -20,9 +20,16 @@ void chatStart(int ssock, char* id) {
     }
 
     if (pid == 0) { // child process
-        //while (1) {
+        int bytes;
 
-        //}
+        while (1) {
+            bytes = read(ssock, msg, BUFSIZ);
+            if (bytes <= 0) {
+                break;
+            }
+            printf("%s\n", msg);
+        }
+
         exit(0);
     } else { // parent process
         while (1) {
@@ -34,8 +41,6 @@ void chatStart(int ssock, char* id) {
                 break;
             }
             char* form = createChatMessage(id, msg);
-
-            printf("%s\n", form);
 
             send(ssock, form, strlen(form), 0);
         }

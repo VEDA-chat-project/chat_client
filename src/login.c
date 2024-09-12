@@ -31,6 +31,7 @@ void logIn(int ssock) {
         }
 
         if (response == 1) { // log in success
+            printf("Log in success!\n");
             chatStart(ssock, id);
         } else {
             printf("Invalid ID/PW.\n");
