@@ -32,13 +32,13 @@ void getPassword(char *password, size_t len) {
 
         if (c == '\n') {
             break;
-        } else if (c == 127 || c == '\b') {  // 백스페이스 처리
+        } else if (c == 127 || c == '\b') {
             if (i > 0) {
-                printf("\b \b");  // 화면에서 '*' 지우기
+                printf("\b \b");
                 i--;
             }
         } else {
-            password[i++] = c;  // 입력된 문자 저장
+            password[i++] = c;
             printf("*");  
         }
     }
