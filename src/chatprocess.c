@@ -36,10 +36,6 @@ void chatStart(int ssock, char* id) {
         while (1) {
             fgets(msg, BUFSIZ, stdin);
 
-            if (strncmp(msg, "exit", 4) == 0) { // exit chat room
-                break;
-            }
-
             msg[strcspn(msg, "\n")] = '\0';
 
             /* 
@@ -49,6 +45,11 @@ void chatStart(int ssock, char* id) {
             char* format = createChatMessage(id, msg); 
 
             send(ssock, format, strlen(format), 0);
+
+            if (strncmp(msg, "exit", 4) == 0) { // exit chat room
+                break;
+            }
+
             free(format);
         }
     
