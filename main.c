@@ -36,21 +36,21 @@ int main(int argc, char **argv) {
     }
 
     char cmd;
-    do {
+    do { // main menu
         printf("------------------------------\n");
         printf("Please enter menu number.\n");
-        printf("1. Log in\n");
-        printf("2. Sign up\n");
-        printf("3. exit\n");
+        printf("(1) Log in\n");
+        printf("(2) Sign up\n");
+        printf("(3) exit\n");
         printf("select > ");
         scanf("%c", &cmd);
         getchar();
         switch (cmd) {
             case '1':
-                logIn(ssock);
+                logIn(ssock); // go to 'login.c' code
                 break;
             case '2':
-                signUp(ssock);
+                signUp(ssock); // go to 'signup.c' code
                 break;
             case '3': 
                 exit(0);

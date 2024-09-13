@@ -19,7 +19,7 @@ void chatStart(int ssock, char* id) {
         exit(1);
     }
 
-    if (pid == 0) { // child process
+    if (pid == 0) { // child process : read messages from chat_server
         int bytes;
 
         while (1) {
@@ -32,19 +32,24 @@ void chatStart(int ssock, char* id) {
         }
 
         exit(0);
-    } else { // parent process
+    } else { // parent process : write messages to chat_server
         while (1) {
             fgets(msg, BUFSIZ, stdin);
 
-            if (strncmp(msg, "exit", 4) == 0) {
+            if (strncmp(msg, "exit", 4) == 0) { // exit chat room
                 break;
             }
 
             msg[strcspn(msg, "\n")] = '\0';
-            char* form = createChatMessage(id, msg);
 
-            send(ssock, form, strlen(form), 0);
-            free(form);
+            /* 
+             * Build a message format "MESSAGE:id msg".
+             * See messagebuilder.c code.
+             */
+            char* format = createChatMessage(id, msg); 
+
+            send(ssock, format, strlen(format), 0);
+            free(format);
         }
     
     }

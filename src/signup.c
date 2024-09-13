@@ -7,12 +7,11 @@
 #include "messagebuilder.h"
 
 void signUp(int ssock) {
-    char id[50], password[50], 
-         buffer[BUFSIZ], response[BUFSIZ];
+    char id[50], password[50];
+    int response;
 
-    printf("start sign up process\n");
-
-    while (1) {
+    while (1) { // input ID/PW
+        printf("------------------------------\n");
         printf("ID : ");
         fgets(id, 50, stdin);
         removeNewline(id);
@@ -20,19 +19,34 @@ void signUp(int ssock) {
         fgets(password, 50, stdin);
         removeNewline(password);
 
+        /*
+         * Build a message format "SIGNUP:id password"
+         * See messagebuilder.c code.
+        */
         if (send(ssock, createSignupMessage(id, password), BUFSIZ, MSG_DONTWAIT) <= 0) {
             perror("send()");
             exit(1);
         }
 
-        if (recv(ssock, response, BUFSIZ, 0) <= 0) {
+        if (recv(ssock, &response, sizeof(int), 0) <= 0) {
             perror("recv()");
             exit(1);
         }
 
-        printf("%s\n", response);
+        if (response == 1) { // Sign up success
+            printf("Sign up success!\n");
+            break;
+        } else { // Sign up failed
+            printf("This ID is already in use.\n");
+            char c;
+            do {
+                printf("(r)etry | (e)xit > ");
+                scanf("%c", &c);
+                getchar();
+            } while(c != 'r' && c != 'e');
 
-        break;
+            if (c == 'e') break;
+        }
     }
 
 }

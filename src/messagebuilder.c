@@ -4,6 +4,10 @@
 
 #include "messagebuilder.h"
 
+/*
+ * char array proccessing functions
+*/
+
 void removeNewline(char* str) {
     size_t len = strlen(str);
     if (len > 0 && str[len - 1] == '\n') {
@@ -12,9 +16,9 @@ void removeNewline(char* str) {
 }
 
 char* createMessage(const char* prefix, const char* part1, const char* part2) {
-    size_t message_length = strlen(prefix) + strlen(part1) + 1;  // 프리픽스 + part1 + 스페이스 또는 NULL
+    size_t message_length = strlen(prefix) + strlen(part1) + 1;
     if (part2 != NULL) {
-        message_length += strlen(part2) + 1;  // part2가 있으면 스페이스 포함
+        message_length += strlen(part2) + 1;
     }
 
     char* message = (char*)malloc(message_length);
