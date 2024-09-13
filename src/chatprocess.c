@@ -27,6 +27,7 @@ void chatStart(int ssock, char* id) {
             if (bytes <= 0) {
                 break;
             }
+            msg[bytes] = '\0';
             printf("%s\n", msg);
         }
 
@@ -36,13 +37,14 @@ void chatStart(int ssock, char* id) {
             fgets(msg, BUFSIZ, stdin);
 
             if (strncmp(msg, "exit", 4) == 0) {
-                // shutdown(ssock, SHUT_WR);
-                //close(ssock);
                 break;
             }
+
+            msg[strcspn(msg, "\n")] = '\0';
             char* form = createChatMessage(id, msg);
 
             send(ssock, form, strlen(form), 0);
+            free(form);
         }
     
     }

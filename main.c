@@ -37,6 +37,8 @@ int main(int argc, char **argv) {
 
     char cmd;
     do {
+        printf("------------------------------\n");
+        printf("Please enter menu number.\n");
         printf("1. Log in\n");
         printf("2. Sign up\n");
         printf("3. exit\n");
@@ -44,13 +46,13 @@ int main(int argc, char **argv) {
         scanf("%c", &cmd);
         getchar();
         switch (cmd) {
-            case '1': // Log in
+            case '1':
                 logIn(ssock);
                 break;
-            case '2': // Sign up
+            case '2':
                 signUp(ssock);
                 break;
-            case '3': // exit
+            case '3': 
                 exit(0);
             default:
                 printf("You have selected wrong command.\n");
