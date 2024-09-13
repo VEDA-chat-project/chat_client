@@ -18,8 +18,9 @@ void logIn(int ssock) {
         fgets(id, 50, stdin);
         removeNewline(id);
         printf("PW : ");
-        fgets(password, 50, stdin);
-        removeNewline(password);
+        getPassword(password, 50);
+        //fgets(password, 50, stdin);
+        //removeNewline(password);
 
         /*
          * Build a message format "LOGIN:id password"

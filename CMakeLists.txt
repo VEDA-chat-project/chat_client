@@ -10,6 +10,7 @@ set(SOURCES
     ${CMAKE_SOURCE_DIR}/src/messagebuilder.c
     ${CMAKE_SOURCE_DIR}/src/chatprocess.c
     ${CMAKE_SOURCE_DIR}/src/connectserver.c
+    ${CMAKE_SOURCE_DIR}/src/hideinput.c
     ${CMAKE_SOURCE_DIR}/main.c
 )
 

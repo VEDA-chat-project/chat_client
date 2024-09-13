@@ -25,7 +25,7 @@ int connectToServer(const char* ip) {
 
     if (connect(ssock, (struct sockaddr*) &servaddr, sizeof(servaddr)) < 0) {
         perror("connect()");
-        close(ssock); // 연결 실패 시 소켓 닫기
+        close(ssock);
         exit(1);
     }
 
