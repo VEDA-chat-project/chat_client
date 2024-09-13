@@ -19,6 +19,7 @@ void chatStart(int ssock, char* id) {
         exit(1);
     }
 
+
     if (pid == 0) { // child process : read messages from chat_server
         int bytes;
 
@@ -33,6 +34,9 @@ void chatStart(int ssock, char* id) {
 
         exit(0);
     } else { // parent process : write messages to chat_server
+        printf("------------------------------\n");
+        printf("Welcome to VEDA chat! %s\n", id);
+        printf("(Enter \"exit\" to log out.)\n");
         while (1) {
             fgets(msg, BUFSIZ, stdin);
 
